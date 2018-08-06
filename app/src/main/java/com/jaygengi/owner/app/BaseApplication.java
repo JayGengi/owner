@@ -11,7 +11,9 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 /**
- * Created by jingbin on 2016/11/22.
+ * 描述：
+ * @author JayGengi
+ * @date 2018/8/6 0006 下午 3:49
  */
 
 public class BaseApplication extends MultiDexApplication {

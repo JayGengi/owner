@@ -6,9 +6,8 @@ import java.util.Stack;
 
 /**
  * 描述：Activity栈管理
- *
- * @author  张钦
- * @date 2017/11/11
+ * @author JayGengi
+ * @date 2018/8/6 0006 下午 3:48
  */
 public class AppManager {
 

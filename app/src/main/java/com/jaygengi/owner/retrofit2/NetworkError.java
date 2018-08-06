@@ -7,7 +7,7 @@ import android.widget.Toast;
 /**
  * 描述：网络统一异常处理
  *
- * @author zhangqin
+ * @author JayGengi
  * @date 2018/2/10
  */
 public class NetworkError {

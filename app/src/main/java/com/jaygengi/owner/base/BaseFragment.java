@@ -14,17 +14,23 @@ import android.view.ViewGroup;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jaygengi.owner.properties.StaticParam;
+import com.jaygengi.owner.utils.eventbus.Event;
+import com.jaygengi.owner.utils.eventbus.EventBusUtil;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 
 public abstract class BaseFragment extends Fragment implements BaseView,OnRefreshListener,OnLoadMoreListener {
@@ -68,6 +74,92 @@ public abstract class BaseFragment extends Fragment implements BaseView,OnRefres
         isPrepared = true;
         baseLazyLoad();
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (isRegisterEventBus()) {
+            EventBusUtil.register(this);
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (isRegisterEventBus()) {
+            EventBusUtil.unregister(this);
+        }
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        isPrepared = false;
+        unSubscribe();
+        mUnBinder.unbind();
+        super.onDestroyView();
+    }
+    /**
+     * 是否注册事件分发
+     *
+     * @return true绑定EventBus事件分发，默认不绑定，子类需要绑定的话复写此方法返回true.
+     */
+    protected boolean isRegisterEventBus() {
+        return false;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventBusCome(Event event) {
+        if (event != null) {
+            receiveEvent(event);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onStickyEventBusCome(Event event) {
+        if (event != null) {
+            receiveStickyEvent(event);
+        }
+    }
+
+    /**
+     * 接收到分发到事件
+     *
+     * @param event 事件
+     */
+    protected void receiveEvent(Event event) {
+
+    }
+
+    /**
+     * 接收到分发的粘性事件
+     *
+     * @param event 粘性事件
+     */
+    protected void receiveStickyEvent(Event event) {
+
+    }
+
+    /**
+     * RxJava 添加订阅者
+     */
+    public void addSubscribe(Disposable subscription) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+        mCompositeDisposable.add(subscription);
+    }
+
+    /**
+     * RxJava 解除所有订阅者
+     */
+    public void unSubscribe() {
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.dispose();
+            mCompositeDisposable.clear();
+            mCompositeDisposable = new CompositeDisposable();
+        }
+    }
+
     /**
      * Fragment的UI是否是可见
      * <p>
@@ -197,11 +289,6 @@ public abstract class BaseFragment extends Fragment implements BaseView,OnRefres
             }
 
         }
-    }
-    @Override
-    public void onDestroyView() {
-        mUnBinder.unbind();
-        super.onDestroyView();
     }
     /**
      * Toast

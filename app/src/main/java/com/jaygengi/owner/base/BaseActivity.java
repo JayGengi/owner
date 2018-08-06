@@ -14,6 +14,8 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jaygengi.owner.R;
 import com.jaygengi.owner.properties.StaticParam;
+import com.jaygengi.owner.utils.eventbus.Event;
+import com.jaygengi.owner.utils.eventbus.EventBusUtil;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
@@ -22,10 +24,14 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
@@ -40,6 +46,15 @@ public abstract class BaseActivity extends SwipeBackActivity implements BaseView
 
     protected Activity mContext;
     protected LinearLayout mRoot_view;
+
+    /**
+     * Rxjava 订阅管理
+     */
+    protected CompositeDisposable mCompositeDisposable;
+    /**
+     * 顶部标题栏
+     */
+    protected QMUITopBar mTopBar;
     /**
      * TipDialog
      */
@@ -63,6 +78,7 @@ public abstract class BaseActivity extends SwipeBackActivity implements BaseView
         super.onCreate(savedInstanceState);
         initContentView(R.layout.activity_base);
         setContentView(getLayout());
+        mTopBar = (QMUITopBar) findViewById(R.id.base_topbar);
         ButterKnife.bind(this);
         mContext = this;
         QMUIStatusBarHelper.setStatusBarDarkMode(mContext);
@@ -75,7 +91,28 @@ public abstract class BaseActivity extends SwipeBackActivity implements BaseView
         AppManager.addActivity(this);
         initEventAndData();
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (isRegisterEventBus()) {
+            EventBusUtil.register(this);
+        }
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (isRegisterEventBus()) {
+            EventBusUtil.unregister(this);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        unSubscribe();
+        AppManager.removeActivity(this);
+        super.onDestroy();
+    }
     /**
      * 描述：初始化View
      *
@@ -205,7 +242,66 @@ public abstract class BaseActivity extends SwipeBackActivity implements BaseView
     public boolean isStartSwipeBack() {
         return true;
     }
+    /**
+     * 是否注册事件分发
+     *
+     * @return true绑定EventBus事件分发，默认不绑定，子类需要绑定的话复写此方法返回true.
+     */
+    protected boolean isRegisterEventBus() {
+        return false;
+    }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventBusCome(Event event) {
+        if (event != null) {
+            receiveEvent(event);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onStickyEventBusCome(Event event) {
+        if (event != null) {
+            receiveStickyEvent(event);
+        }
+    }
+
+    /**
+     * 接收到分发到事件
+     *
+     * @param event 事件
+     */
+    protected void receiveEvent(Event event) {
+
+    }
+
+    /**
+     * 接收到分发的粘性事件
+     *
+     * @param event 粘性事件
+     */
+    protected void receiveStickyEvent(Event event) {
+
+    }
+    /**
+     * RxJava 添加订阅者
+     */
+    public void addSubscribe(Disposable subscription) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+        mCompositeDisposable.add(subscription);
+    }
+
+    /**
+     * RxJava 解除所有订阅者
+     */
+    public void unSubscribe() {
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.dispose();
+            mCompositeDisposable.clear();
+            mCompositeDisposable = new CompositeDisposable();
+        }
+    }
     /**
      * Toast
      *

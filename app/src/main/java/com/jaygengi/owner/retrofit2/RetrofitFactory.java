@@ -2,7 +2,7 @@ package com.jaygengi.owner.retrofit2;
 
 
 import com.blankj.utilcode.util.LogUtils;
-import com.google.gson.Gson;
+import com.jaygengi.owner.BuildConfig;
 import com.jaygengi.owner.properties.StaticParam;
 
 import java.util.concurrent.TimeUnit;
@@ -12,6 +12,7 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -43,7 +44,7 @@ public class RetrofitFactory {
 
         //创建Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.baidu.com")
+                .baseUrl(StaticParam.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())//添加gson转换器
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//添加rxjava2转换器
                 .client(initOkhttpClient())// 设置OkHttpclient
@@ -68,13 +69,15 @@ public class RetrofitFactory {
                 if (request.body() instanceof FormBody) {
                     FormBody.Builder bodyBuilder = new FormBody.Builder();
                     FormBody formBody = (FormBody) request.body();
-
+                    StringBuffer requestParams = new StringBuffer();
                     //把原来的参数添加到新的构造器
                     for (int i = 0; i < formBody.size(); i++) {
                         bodyBuilder.addEncoded(formBody.encodedName(i), formBody.encodedValue(i));
+                        requestParams.append(formBody.encodedName(i)+"   =    "+formBody.encodedValue(i)+"\n");
                     }
+                    LogUtils.d(requestParams);
+//                    LogUtils.d(new Gson().toJson(requestParams));
                     formBody = bodyBuilder.build();
-                    LogUtils.d("addRequest"+ new Gson().toJson(formBody.toString()));
                     request = request.newBuilder().post(formBody).build();
                 }
             }

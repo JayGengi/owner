@@ -1,16 +1,11 @@
 package com.jaygengi.owner.retrofit2;
 
-import com.ctrl.hshlife.entity.CateCafeteriaModel;
-import com.ctrl.hshlife.entity.CommunityAdreeModel;
-import com.ctrl.hshlife.entity.CommunityModel;
-import com.ctrl.hshlife.entity.EquipmentModel;
-import com.ctrl.hshlife.entity.HouseTopRoleModel;
-import com.ctrl.hshlife.entity.MemberBindListModel;
-import com.ctrl.hshlife.entity.Rental;
-import com.ctrl.hshlife.entity.RentalDetail;
-import com.sdwfqin.quicklib.utils.RxUtil;
+import com.jaygengi.owner.model.GankImgModel;
+import com.jaygengi.owner.utils.RxUtil;
 
 import java.util.Map;
+
+import retrofit2.http.Query;
 
 /**
  * 描述：网络请求response接口统一管理类
@@ -30,13 +25,13 @@ public class ApiServerResponse {
         return apiServerResponse;
     }
     /**
-     * 公共无参返回方法[Activity]
+     * gank.io開源福利圖片集合接口
      * */
-    public void CommonPostinfo(Map<String, Object> map, RetrofitObserverA<ResponseHead> scheduler) {
+    public void getGankImg(String type,int rows,int page, RetrofitObserver<ResponseHead<GankImgModel>> scheduler) {
         RetrofitFactory
                 .getInstence()
                 .API()
-                .CommonPostinfo(map)
+                .getGankImg(type,rows,page)
                 .compose(RxUtil.rxObservableSchedulerHelper())
                 .subscribe(scheduler);
     }

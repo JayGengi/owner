@@ -16,9 +16,8 @@ import retrofit2.HttpException;
 
 /**
  * 描述：网络异常类
- *
- * @author zhangqin
- * @date 2018/2/10
+ * @author JayGengi
+ * @date 2018/8/6 0006 下午 3:49
  */
 public class RetrofitException {
 

@@ -6,6 +6,12 @@ package com.jaygengi.owner.properties;
 */
 public class StaticParam {
 
+	/**
+	 * BaseUrl
+	 */
+	public static final String BASE_URL = "https://gank.io/api/";
+	public static final String BASE_API = "api";
+
 	/**---------------------系统语言_begin-----------------------------------*/
 	/** 简体中文 */
 	public static final String ZH_CN = "zh_CN";
@@ -34,6 +40,12 @@ public class StaticParam {
 
 	//文件保存目录
 	public static String fileSavePath = "";
+
+
+	/**
+	 * 网络请求时长
+	 */
+	public static final int HTTP_TIME = 5000;
 }
 
 

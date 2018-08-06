@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.jaygengi.owner.app.ConstantsImageUrl;
 import com.jaygengi.owner.base.BaseActivity;
+import com.jaygengi.owner.ui.MainActivity;
 import com.jaygengi.owner.utils.CommonUtils;
 
 import java.lang.ref.WeakReference;

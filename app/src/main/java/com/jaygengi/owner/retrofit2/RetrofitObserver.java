@@ -1,8 +1,8 @@
 package com.jaygengi.owner.retrofit2;
 
+
 import com.blankj.utilcode.util.LogUtils;
-import com.sdwfqin.quicklib.base.BaseFragment;
-import com.tencent.bugly.crashreport.CrashReport;
+import com.jaygengi.owner.base.BaseActivity;
 
 import java.lang.ref.WeakReference;
 
@@ -10,18 +10,15 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 /**
- * 描述：Retrofit Observer Fragment 封装
- * <p>
- * Fragment
- *
- * @author zhangqin
- * @date 2018/4/4
+ * 描述：Retrofit Observer封装
+ * @author JayGengi
+ * @date 2018/8/6 0006 下午 3:50
  */
-public abstract class RetrofitObserverF<T> implements Observer<T> {
+public abstract class RetrofitObserver<T> implements Observer<T> {
 
-    private WeakReference<BaseFragment> mContent;
+    private WeakReference<BaseActivity> mContent;
 
-    public RetrofitObserverF(BaseFragment context) {
+    public RetrofitObserver(BaseActivity context) {
         super();
         mContent = new WeakReference<>(context);
     }
@@ -50,7 +47,7 @@ public abstract class RetrofitObserverF<T> implements Observer<T> {
     public void onNext(T response) {
         try {
             if (response instanceof ResponseHead) {
-                if (((ResponseHead) response).isOk(mContent.get().getActivity())) {
+                if (((ResponseHead) response).isOk(mContent.get())) {
                     onSuccess(response);
                 } else {
                     onServiceError(response);
@@ -59,7 +56,8 @@ public abstract class RetrofitObserverF<T> implements Observer<T> {
                 onOtherSuccess(response);
             }
         } catch (Exception e) {
-            CrashReport.postCatchedException(e);
+            //TODO
+//            CrashReport.postCatchedException(e);
             onError(e);
         }
     }
@@ -97,7 +95,8 @@ public abstract class RetrofitObserverF<T> implements Observer<T> {
     protected void onNetError(Throwable e) {
         LogUtils.e(e);
         if (mContent != null && mContent.get() != null) {
-            NetworkError.error(mContent.get().getActivity(), e);
+            NetworkError.error(mContent.get(), e);
         }
     }
 }
+

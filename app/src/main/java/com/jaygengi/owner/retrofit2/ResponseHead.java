@@ -4,10 +4,9 @@ import android.content.Context;
 
 
 /**
- * 描述：
- *
- * @author zhangqin
- * @date 2018/2/10
+ * 描述：请求头
+ * @author JayGengi
+ * @date 2018/8/6 0006 下午 3:49
  */
 public class ResponseHead<T> {
 
@@ -27,6 +26,12 @@ public class ResponseHead<T> {
      * 返回信息
      * */
     private String description;
+
+    /**
+     * Gank.io回调状态
+     * "error":false成功
+     * */
+    private String error;
     /**
      * 数据集
      * */
@@ -38,6 +43,7 @@ public class ResponseHead<T> {
                 "method='" + method + '\'' +
                 ", level='" + level + '\'' +
                 ", code='" + code + '\'' +
+                ", error='" + error + '\'' +
                 ", description='" + description + '\'' +
                 ", data=" + data +
                 '}';
@@ -50,6 +56,14 @@ public class ResponseHead<T> {
             NetworkError.error(context, new ServerException(Integer.parseInt(code), description));
             return false;
         }
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 
     public String getMethod() {
