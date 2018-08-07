@@ -1,5 +1,10 @@
 package com.jaygengi.owner.model;
 
+import android.content.Context;
+
+import com.jaygengi.owner.retrofit2.NetworkError;
+import com.jaygengi.owner.retrofit2.ServerException;
+
 import java.util.List;
 
 /**
@@ -9,11 +14,31 @@ import java.util.List;
  */
 public class GankImgModel {
 
-
+    /**
+     * Gank.io回调状态
+     * "error":false成功
+     * */
+    private String error;
     private List<ResultsBean> results;
 
     public List<ResultsBean> getResults() {
         return results;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+    public boolean isOk(Context context) {
+        if (error.equals("false")) {
+            return true;
+        } else {
+            NetworkError.error(context, new ServerException(100, "请求异常"));
+            return false;
+        }
     }
 
     public void setResults(List<ResultsBean> results) {

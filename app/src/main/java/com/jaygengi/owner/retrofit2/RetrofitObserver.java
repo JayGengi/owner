@@ -3,6 +3,7 @@ package com.jaygengi.owner.retrofit2;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.jaygengi.owner.base.BaseActivity;
+import com.jaygengi.owner.model.GankImgModel;
 
 import java.lang.ref.WeakReference;
 
@@ -42,18 +43,13 @@ public abstract class RetrofitObserver<T> implements Observer<T> {
         }
         onNetError(e);
     }
-
     @Override
     public void onNext(T response) {
         try {
-            if (response instanceof ResponseHead) {
-                if (((ResponseHead) response).isOk(mContent.get())) {
+                if (((GankImgModel) response).isOk(mContent.get())) {
                     onSuccess(response);
                 } else {
                     onServiceError(response);
-                }
-            } else {
-                onOtherSuccess(response);
             }
         } catch (Exception e) {
             //TODO
@@ -61,6 +57,24 @@ public abstract class RetrofitObserver<T> implements Observer<T> {
             onError(e);
         }
     }
+//    @Override
+//    public void onNext(T response) {
+//        try {
+//            if (response instanceof ResponseHead) {
+//                if (((ResponseHead) response).isOk(mContent.get())) {
+//                    onSuccess(response);
+//                } else {
+//                    onServiceError(response);
+//                }
+//            } else {
+//                onOtherSuccess(response);
+//            }
+//        } catch (Exception e) {
+//            //TODO
+////            CrashReport.postCatchedException(e);
+//            onError(e);
+//        }
+//    }
 
     /**
      * 请求成功并且服务器未下发异常

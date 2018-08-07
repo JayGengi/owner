@@ -36,7 +36,6 @@ public class ResponseHead<T> {
      * 数据集
      * */
     private T data;
-
     @Override
     public String toString() {
         return "ResponseHead{" +
@@ -50,7 +49,7 @@ public class ResponseHead<T> {
     }
 
     public boolean isOk(Context context) {
-        if (code.equals("000")) {
+        if (error.equals("false")) {
             return true;
         } else {
             NetworkError.error(context, new ServerException(Integer.parseInt(code), description));

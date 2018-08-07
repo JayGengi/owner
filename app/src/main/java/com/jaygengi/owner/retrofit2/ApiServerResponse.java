@@ -27,7 +27,7 @@ public class ApiServerResponse {
     /**
      * gank.io開源福利圖片集合接口
      * */
-    public void getGankImg(String type,int rows,int page, RetrofitObserver<ResponseHead<GankImgModel>> scheduler) {
+    public void getGankImg(String type,int rows,int page, RetrofitObserver<GankImgModel> scheduler) {
         RetrofitFactory
                 .getInstence()
                 .API()

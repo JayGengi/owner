@@ -16,7 +16,7 @@ public interface ApiServer {
      * gank.io開源福利圖片集合接口
      */
     @GET("data/{type}/{rows}/{page}")
-    Observable<ResponseHead<GankImgModel>> getGankImg(@Path("type") String data, @Path("rows") int page, @Path("page") int rows);
+    Observable<GankImgModel> getGankImg(@Path("type") String data, @Path("rows") int page, @Path("page") int rows);
 
 }
 

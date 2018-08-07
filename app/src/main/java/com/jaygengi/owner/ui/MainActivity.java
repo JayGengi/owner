@@ -1,5 +1,6 @@
 package com.jaygengi.owner.ui;
 
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -8,7 +9,6 @@ import com.jaygengi.owner.R;
 import com.jaygengi.owner.base.BaseActivity;
 import com.jaygengi.owner.model.GankImgModel;
 import com.jaygengi.owner.retrofit2.ApiServerResponse;
-import com.jaygengi.owner.retrofit2.ResponseHead;
 import com.jaygengi.owner.retrofit2.RetrofitObserver;
 import com.jaygengi.owner.ui.adapter.MainAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -34,8 +34,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initEventAndData() {
-//        mTopBar.addLeftBackImageButton().setOnClickListener(v -> finish());
-//        mTopBar.setTitle("Gank.io");
+        mTopBar.addLeftBackImageButton().setOnClickListener(v -> finish());
+        mTopBar.setTitle("Gank.io");
         setAdapter();
         initData();
     }
@@ -49,14 +49,14 @@ public class MainActivity extends BaseActivity {
     private void initData() {
         ApiServerResponse
                 .getInstence()
-                .getGankImg("福利",20,page, new RetrofitObserver<ResponseHead<GankImgModel>>(this) {
+                .getGankImg("福利",20,page, new RetrofitObserver<GankImgModel>(this) {
                     @Override
-                    protected void onSuccess(ResponseHead<GankImgModel> response) {
-                        baseDataList = response.getData().getResults();
+                    protected void onSuccess(GankImgModel response) {
+                        baseDataList = response.getResults();
                         loadSuccess();
                     }
                     @Override
-                    protected void onServiceError(ResponseHead<GankImgModel> allShopModelBaseResponse) {
+                    protected void onServiceError(GankImgModel allShopModelBaseResponse) {
                         loadFail();
                     }
                     @Override
@@ -77,6 +77,14 @@ public class MainActivity extends BaseActivity {
         baseAdapter = new MainAdapter(baseDataList);
         setBaseSwipeLayout(refreshLayout,recycleView, baseAdapter);
         recycleView.setNestedScrollingEnabled(false);
+        recycleView.setLayoutManager(new GridLayoutManager(mContext, 2));
+//        recycleView.addItemDecoration(new RecyclerView.ItemDecoration() {
+//            @Override
+//            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+//                super.getItemOffsets(outRect, view, parent, state);
+//                outRect.bottom = getResources().getDimensionPixelSize(R.dimen.dp_px_15);
+//            }
+//        });
         baseAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

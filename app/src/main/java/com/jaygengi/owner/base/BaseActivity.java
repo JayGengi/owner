@@ -129,7 +129,11 @@ public abstract class BaseActivity extends SwipeBackActivity implements BaseView
         //  add the layout of BaseActivity in mRoot_view
         LayoutInflater.from(this).inflate(layoutResID, mRoot_view, true);
     }
-
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        //  added the sub-activity layout id in mRoot_view
+        LayoutInflater.from(this).inflate(layoutResID, mRoot_view, true);
+    }
     /**
      * ---------------------列表设置-------------------------
      */

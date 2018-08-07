@@ -1,7 +1,9 @@
 package com.jaygengi.owner.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -23,15 +25,19 @@ public class MainAdapter extends BaseQuickAdapter<GankImgModel.ResultsBean, Base
         super(R.layout.adapter_main, data);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void convert(BaseViewHolder helper, GankImgModel.ResultsBean item) {
 
         ImageView rentalImage = helper.getView(R.id.rental_image);
-//        Glide.with(mContext).load(item.getUrl()).into(rentalImage);
         Glide.with(mContext)
                 .load(item.getUrl())
                 .placeholder(R.drawable.start_bg)
                 .error(R.drawable.start_bg)
                 .into(rentalImage);
+
+//        TextView who = helper.getView(R.id.who);
+//        who.setText("who:   "+item.getWho());
+//        who.getBackground().setAlpha(100);
     }
 }
