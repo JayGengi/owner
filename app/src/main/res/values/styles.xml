@@ -6,8 +6,22 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
 
+        <!-- 配置qmui提供的theme -->
+        <item name="qmui_config_color_blue">@color/colorPrimary</item>
+        <item name="QMUITopBarStyle">@style/QDTopBar</item>
+    </style>
+    <!--**********************************************
+            *             qmui topbar style              *
+            ***********************************************-->
+    <style name="QDTopBar" parent="QMUI.TopBar">
+        <item name="qmui_topbar_separator_height">0px</item>
+        <item name="qmui_topbar_title_color">@color/white</item>
+        <item name="qmui_topbar_bg_color">@color/colorPrimary</item>
+        <item name="qmui_topbar_left_back_drawable_id">@drawable/ic_left</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="qmui_topbar_text_btn_color_state_list">@color/white</item>
+    </style>
     <!--查看大图页面，全屏显示-->
     <style name="ViewBigPicTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
