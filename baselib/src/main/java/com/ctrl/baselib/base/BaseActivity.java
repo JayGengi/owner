@@ -1,4 +1,4 @@
-package com.jaygengi.owner.base;
+package com.ctrl.baselib.base;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import android.widget.LinearLayout;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.jaygengi.owner.R;
-import com.jaygengi.owner.properties.StaticParam;
-import com.jaygengi.owner.utils.eventbus.Event;
-import com.jaygengi.owner.utils.eventbus.EventBusUtil;
+import com.ctrl.baselib.R;
+import com.ctrl.baselib.properties.StaticParam;
+import com.ctrl.baselib.utils.eventbus.Event;
+import com.ctrl.baselib.utils.eventbus.EventBusUtil;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;

@@ -1,4 +1,4 @@
-package com.jaygengi.owner.properties;
+package com.ctrl.baselib.properties;
 
 /**
 *  静态参数

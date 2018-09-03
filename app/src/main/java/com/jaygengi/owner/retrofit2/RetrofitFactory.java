@@ -2,8 +2,8 @@ package com.jaygengi.owner.retrofit2;
 
 
 import com.blankj.utilcode.util.LogUtils;
+import com.ctrl.baselib.properties.StaticParam;
 import com.jaygengi.owner.BuildConfig;
-import com.jaygengi.owner.properties.StaticParam;
 
 import java.util.concurrent.TimeUnit;
 

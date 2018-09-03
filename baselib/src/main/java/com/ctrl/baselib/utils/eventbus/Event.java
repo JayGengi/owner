@@ -1,9 +1,9 @@
-package com.jaygengi.owner.utils.eventbus;
+package com.ctrl.baselib.utils.eventbus;
 
 /**
  * 描述：EventBus事件对象
  * @author JayGengi
- * @date 2018/8/6 0006 下午 4:14
+ * @date 2018/9/3 0003 下午 3:19
  */
 public class Event<T> {
     private int code;

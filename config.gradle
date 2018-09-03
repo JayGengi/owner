@@ -1,0 +1,92 @@
+ext {
+    //android开发版本配置
+    android = [
+            compileSdkVersion: 27,
+            buildToolsVersion: "27.0.3",
+            applicationId    : "com.ctrl.baselib",
+            minSdkVersion    : 18,
+            targetSdkVersion : 27,
+            versionCode      : 1,
+            versionName      : "1.0",
+    ]
+    //version配置
+    versions = [
+            "support-version": "27.0.2",
+            "junit-version"  : "4.12",
+    ]
+    //support配置
+    support = [
+            "constraint-layout"       : "1.0.0-beta2",
+            'support-v4'              : "com.android.support:support-v4:${versions["support-version"]}",
+            'appcompat-v7'            : "com.android.support:appcompat-v7:${versions["support-version"]}",
+            'recyclerview-v7'         : "com.android.support:recyclerview-v7:${versions["support-version"]}",
+            'support-v13'             : "com.android.support:support-v13:${versions["support-version"]}",
+            'support-fragment'        : "com.android.support:support-fragment:${versions["support-version"]}",
+            'design'                  : "com.android.support:design:${versions["support-version"]}",
+            'animated-vector-drawable': "com.android.support:animated-vector-drawable:${versions["support-version"]}",
+            'junit'                   : "junit:junit:${versions["junit-version"]}",
+    ]
+    //依赖第三方配置
+    dependencies = [
+            //Google新组件
+            "lifecycle-extensions"         : "android.arch.lifecycle:extensions:1.0.0",
+            //QMUI
+            "qmui"                         : "com.qmuiteam:qmui:1.1.6",
+            //百分比布局
+            "percent"                      : "com.zhy:percent-support-extends:1.1.1",
+
+            // 流式布局[可与recyclerview搭配使用,动态加载]
+            "flexbox"                      : "com.google.android:flexbox:1.0.0",
+
+            //eventbus
+            "eventbus"                     : "org.greenrobot:eventbus:3.1.1",
+
+            // 上拉刷新下拉加载
+            "smartRefreshLayout"           : "com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1",
+            //==================================网络库套装=====================================
+            // Retrofit
+            "retrofit"                     : "com.squareup.retrofit2:retrofit:2.4.0",
+            "converter-gson"               : "com.squareup.retrofit2:converter-gson:2.4.0",
+            "converter-scalars"            : "com.squareup.retrofit2:converter-scalars:2.4.0",
+            "adapter-rxjava2"              : "com.squareup.retrofit2:adapter-rxjava2:2.4.0",
+
+            //rxjava2
+            "rxjava"                       : "io.reactivex.rxjava2:rxjava:2.2.0",
+            "rxandroid"                    : "io.reactivex.rxjava2:rxandroid:2.0.2",
+
+            //Retrofit依赖OkHttp来进行网络请求 日志拦截器
+            "logging-interceptor"          : "com.squareup.okhttp3:logging-interceptor:3.11.0",
+            //==================================网络库套装=====================================
+            //noinspection GradleCompatible
+            "butterknife"                  : "com.jakewharton:butterknife:8.8.1",
+            "butterknife-compiler"         : "com.jakewharton:butterknife-compiler:8.8.1",
+
+            //SweetSheet[超炫酷的弹框]
+            "AndroidSweetSheet"            : "com.github.zzz40500:AndroidSweetSheet:1.1.0",
+
+            //BaseQuickAdapter[很赞的适配器封装]
+            "BaseRecyclerViewAdapterHelper": "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40",
+
+            //swipebacklayout[仿IOS侧滑关闭]
+            "swipebacklayout"              : "me.imid.swipebacklayout.lib:library:1.3.0",
+
+            //Utils【常用工具类】
+            "utilcode"                     : "com.blankj:utilcode:1.19.0",
+
+            //glide图片加载
+            "glide"                        : "jp.wasabeef:glide-transformations:2.0.1",
+
+            //图片压缩工具
+            "Luban"                        : "top.zibin:Luban:1.1.8",
+
+            // 图片选择
+            "matisse"                      : "com.zhihu.android:matisse:0.5.1",
+
+            // 图片剪裁
+            "ucrop"                        : "com.github.yalantis:ucrop:2.2.2",
+
+            "multidex"                     : 'com.android.support:multidex:1.0.3'
+    ]
+}
+
+

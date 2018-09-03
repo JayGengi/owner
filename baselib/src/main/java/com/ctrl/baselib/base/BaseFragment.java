@@ -1,4 +1,4 @@
-package com.jaygengi.owner.base;
+package com.ctrl.baselib.base;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.jaygengi.owner.properties.StaticParam;
-import com.jaygengi.owner.utils.eventbus.Event;
-import com.jaygengi.owner.utils.eventbus.EventBusUtil;
+import com.ctrl.baselib.properties.StaticParam;
+import com.ctrl.baselib.utils.eventbus.Event;
+import com.ctrl.baselib.utils.eventbus.EventBusUtil;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -33,7 +33,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 
-public abstract class BaseFragment extends Fragment implements BaseView,OnRefreshListener,OnLoadMoreListener {
+public abstract class BaseFragment extends Fragment implements BaseView,OnRefreshListener,OnLoadMoreListener,View.OnClickListener  {
 
     protected View mView;
     protected Activity mActivity;

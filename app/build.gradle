@@ -1,110 +1,63 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
-    defaultConfig {
-        applicationId "com.jaygengi.owner"
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
-        ndk {
-            //选择要添加的对应cpu类型的.so库。
-            abiFilters 'armeabi-v7a',"x86"
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
         }
     }
     buildTypes {
         release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    // 注释下面代码(签名配置)
+//    signingConfigs {
+//        if (propertyHaveSigningConfigs) {
+//            debug {
+//                storeFile file(pStoreFile)
+//                storePassword pStorePassword
+//                keyAlias pKeyAlias
+//                keyPassword pKeyPassword
+//            }
+//
+//            release {
+//                storeFile file(pStoreFile)
+//                storePassword pStorePassword
+//                keyAlias pKeyAlias
+//                keyPassword pKeyPassword
+//            }
+//        }
+//    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    sourceSets {
-        main {
-            jni.srcDirs = []
-            jniLibs.srcDirs = ['libs']
-        }
-    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    //noinspection GradleCompatible
-    implementation 'com.android.support:appcompat-v7:28.0.0-beta01'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    //QMUI[框架整体的UI]
-    implementation 'com.qmuiteam:qmui:1.1.5'
 
-    // 流式布局[可与recyclerview搭配使用,动态加载]
-    implementation 'com.google.android:flexbox:1.0.0'
-
-    //eventbus
-    implementation 'org.greenrobot:eventbus:3.1.1'
-
-    // 上拉刷新下拉加载
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
-    //==================================网络库套装=====================================
-    // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.4.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
-
-    //rxjava2
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
-
-    //Retrofit依赖OkHttp来进行网络请求 日志拦截器
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
-    //==================================网络库套装=====================================
-    //noinspection GradleCompatible
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
-    //百分比布局
-    implementation 'com.zhy:percent-support-extends:1.1.1'
-
-    //SweetSheet[超炫酷的弹框]
-    api 'com.github.zzz40500:AndroidSweetSheet:1.1.0'
-
-    //BaseQuickAdapter[很赞的适配器封装]
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
-
-    //swipebacklayout[仿IOS侧滑关闭]
-    implementation 'me.imid.swipebacklayout.lib:library:1.3.0'
-
-    //Utils【常用工具类】
-    implementation 'com.blankj:utilcode:1.17.2'
-
-    //ImageLoader
-//    implementation 'com.github.bumptech.glide:glide:4.7.1'
-//    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
-
-
-    //glide图片加载
-    implementation 'jp.wasabeef:glide-transformations:2.0.1'
-
-    //图片压缩工具
-    implementation 'top.zibin:Luban:1.1.8'
-
-    // 图片选择
-    implementation 'com.zhihu.android:matisse:0.5.1'
-
-    // 图片剪裁
-    implementation 'com.github.yalantis:ucrop:2.2.2'
-
-    // 图片压缩
-    implementation 'top.zibin:Luban:1.1.8'
-    implementation files('libs/BaiduLBS_Android.jar')
+    //baselib
+    implementation project(':baselib')
 }

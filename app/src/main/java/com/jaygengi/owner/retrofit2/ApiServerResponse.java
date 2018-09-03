@@ -1,11 +1,8 @@
 package com.jaygengi.owner.retrofit2;
 
+import com.ctrl.baselib.utils.RxUtil;
 import com.jaygengi.owner.model.GankImgModel;
-import com.jaygengi.owner.utils.RxUtil;
 
-import java.util.Map;
-
-import retrofit2.http.Query;
 
 /**
  * 描述：网络请求response接口统一管理类

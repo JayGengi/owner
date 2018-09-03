@@ -1,4 +1,4 @@
-package com.jaygengi.owner.base;
+package com.ctrl.baselib.base;
 
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 

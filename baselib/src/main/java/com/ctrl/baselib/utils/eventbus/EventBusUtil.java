@@ -1,11 +1,11 @@
-package com.jaygengi.owner.utils.eventbus;
+package com.ctrl.baselib.utils.eventbus;
 
 import org.greenrobot.eventbus.EventBus;
 
 /**
  * 描述：EventBus工具类
  * @author JayGengi
- * @date 2018/8/6 0006 下午 4:12
+ * @date 2018/9/3 0003 下午 3:14
  */
 public class EventBusUtil {
 

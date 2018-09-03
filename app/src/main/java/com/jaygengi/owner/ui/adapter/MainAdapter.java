@@ -15,9 +15,9 @@ import com.jaygengi.owner.model.GankImgModel;
 import java.util.List;
 
 /**
- * 描述：我的房产适配器
+ * 描述：
  * @author JayGengi
- * @date 2018/7/4 0004 上午 11:12retal_item.xml
+ * @date 2018/7/4 0004 上午 11:12
  */
 public class MainAdapter extends BaseQuickAdapter<GankImgModel.ResultsBean, BaseViewHolder> {
 
@@ -30,11 +30,20 @@ public class MainAdapter extends BaseQuickAdapter<GankImgModel.ResultsBean, Base
     protected void convert(BaseViewHolder helper, GankImgModel.ResultsBean item) {
 
         ImageView rentalImage = helper.getView(R.id.rental_image);
-        Glide.with(mContext)
-                .load(item.getUrl())
-                .placeholder(R.drawable.start_bg)
-                .error(R.drawable.start_bg)
-                .into(rentalImage);
+
+        if(helper.getAdapterPosition() == 0){
+            Glide.with(mContext)
+                    .load("")
+                    .placeholder(R.mipmap.launcher)
+                    .error(R.mipmap.launcher)
+                    .into(rentalImage);
+        }else {
+            Glide.with(mContext)
+                    .load(item.getUrl())
+                    .placeholder(R.mipmap.launcher)
+                    .error(R.mipmap.launcher)
+                    .into(rentalImage);
+        }
 
 //        TextView who = helper.getView(R.id.who);
 //        who.setText("who:   "+item.getWho());

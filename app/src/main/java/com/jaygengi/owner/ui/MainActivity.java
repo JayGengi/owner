@@ -2,11 +2,10 @@ package com.jaygengi.owner.ui;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.blankj.utilcode.util.ToastUtils;
+import com.ctrl.baselib.base.BaseActivity;
 import com.jaygengi.owner.R;
-import com.jaygengi.owner.base.BaseActivity;
 import com.jaygengi.owner.model.GankImgModel;
 import com.jaygengi.owner.retrofit2.ApiServerResponse;
 import com.jaygengi.owner.retrofit2.RetrofitObserver;
@@ -35,7 +34,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initEventAndData() {
         mTopBar.addLeftBackImageButton().setOnClickListener(v -> finish());
-        mTopBar.setTitle("Gank.io");
+        mTopBar.setTitle("Gank.io福利");
         setAdapter();
         initData();
     }
@@ -85,11 +84,25 @@ public class MainActivity extends BaseActivity {
 //                outRect.bottom = getResources().getDimensionPixelSize(R.dimen.dp_px_15);
 //            }
 //        });
-        baseAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                showMsg("JayGengi"+position);
+        baseAdapter.setOnItemClickListener((adapter, view, position) -> {
+            if(position == 0){
+                ToastUtils.showShort("戚星丽你还想看大图？");
+            }else if(position == 1){
+                ToastUtils.showShort("戚星丽今晚去健身房？");
+            }else if(position == 2){
+                ToastUtils.showShort("戚星丽今晚吃猪蹄吗？");
+            }else if(position == 3){
+                ToastUtils.showShort("戚星丽今晚吃葡萄吗？");
+            }else if(position == 4){
+                ToastUtils.showShort("戚星丽你还想看大图？");
+            }else if(position == 5){
+                ToastUtils.showShort("戚星丽你还想看大图？");
+            }else if(position == 6){
+                ToastUtils.showShort("戚星丽你还想看大图？");
+            }else{
+                ToastUtils.showShort("叶瑶瑶你还想看大图，大图还没写完？");
             }
+
         });
     }
     @Override

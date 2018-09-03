@@ -2,7 +2,7 @@ package com.jaygengi.owner.retrofit2;
 
 
 import com.blankj.utilcode.util.LogUtils;
-import com.jaygengi.owner.base.BaseActivity;
+import com.ctrl.baselib.base.BaseActivity;
 import com.jaygengi.owner.model.GankImgModel;
 
 import java.lang.ref.WeakReference;
