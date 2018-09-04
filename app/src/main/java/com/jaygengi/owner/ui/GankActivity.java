@@ -4,8 +4,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.blankj.utilcode.util.ToastUtils;
-import com.ctrl.baselib.base.BaseActivity;
 import com.jaygengi.owner.R;
+import com.jaygengi.owner.base.CtrlActivity;
 import com.jaygengi.owner.model.GankImgModel;
 import com.jaygengi.owner.retrofit2.ApiServerResponse;
 import com.jaygengi.owner.retrofit2.RetrofitObserver;
@@ -19,7 +19,7 @@ import butterknife.BindView;
  * @author JayGengi
  * @date 2018/8/6 0006 下午 5:22
  */
-public class MainActivity extends BaseActivity {
+public class GankActivity extends CtrlActivity {
 
     @BindView(R.id.recycleview)
     RecyclerView recycleView;
@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_main;
+        return R.layout.activity_gank;
     }
 
     @Override
@@ -46,6 +46,7 @@ public class MainActivity extends BaseActivity {
      * @date 2018/7/17 0017 下午 4:29
      */
     private void initData() {
+        showProgress();
         ApiServerResponse
                 .getInstence()
                 .getGankImg("福利",20,page, new RetrofitObserver<GankImgModel>(this) {

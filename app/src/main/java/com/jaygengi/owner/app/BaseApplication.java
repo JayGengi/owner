@@ -48,13 +48,13 @@ public class BaseApplication extends MultiDexApplication {
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
             //全局设置主题颜色
-            layout.setPrimaryColorsId(R.color.common_color_line, R.color.common_color_black);
+            layout.setPrimaryColorsId(R.color.common_color_line, R.color.qmui_config_color_black);
             //指定为经典Header，默认是 贝塞尔雷达Header
             return new ClassicsHeader(context).setSpinnerStyle(SpinnerStyle.Translate);
         });
         //设置全局的Footer构建器
         SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> {
-                    layout.setPrimaryColorsId(R.color.common_color_line, R.color.common_color_black);
+                    layout.setPrimaryColorsId(R.color.common_color_line, R.color.qmui_config_color_black);
                     //指定为经典Footer，默认是 BallPulseFooter
                     return new ClassicsFooter(context).setSpinnerStyle(SpinnerStyle.Translate);
                 }

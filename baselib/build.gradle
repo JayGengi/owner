@@ -36,9 +36,7 @@ dependencies {
 //    api rootProject.ext.support["design"]
     api rootProject.ext.support["support-v4"]
     api rootProject.ext.support["appcompat-v7"]
-    implementation('com.android.support:design:27.1.0') {
-        exclude module: 'design'
-    }
+
     api rootProject.ext.support["recyclerview-v7"]
 
     //qmui

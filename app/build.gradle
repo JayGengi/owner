@@ -62,4 +62,11 @@ dependencies {
 
     //baselib
     implementation project(':baselib')
+
+    implementation('com.android.support:design:27.1.0') {
+        exclude module: 'design'
+    }
+
+    //底部tabBar
+    implementation 'me.majiajie:pager-bottom-tab-strip:2.2.5'
 }

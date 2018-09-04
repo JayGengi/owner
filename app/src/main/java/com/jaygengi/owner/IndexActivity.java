@@ -8,9 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.ctrl.baselib.base.BaseActivity;
 import com.jaygengi.owner.app.ConstantsImageUrl;
-import com.jaygengi.owner.ui.MainActivity;
+import com.jaygengi.owner.base.CtrlActivity;
+import com.jaygengi.owner.ui.tab_bar.TabBarActivity;
 import com.jaygengi.owner.utils.CommonUtils;
 
 import java.lang.ref.WeakReference;
@@ -19,7 +19,7 @@ import java.util.Random;
 import butterknife.BindView;
 
 
-public class IndexActivity extends BaseActivity {
+public class IndexActivity extends CtrlActivity {
 
     @BindView(R.id.iv_pic)
     ImageView ivPic;
@@ -97,7 +97,7 @@ public class IndexActivity extends BaseActivity {
         if (isIn) {
             return;
         }
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, TabBarActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);
         finish();

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">JayGengi</string>
+
+    <!--StateLayout_网络请求公共参数-->
+    <string name="empty_tip">什么都没有</string>
+    <string name="error_tip">加载失败</string>
+    <string name="retry_tip">轻触屏幕重试</string>
 </resources>

@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!--项目常用色调-->
+    <color name="colorPrimary">#648745</color>
+
+    <color name="color_auxiliary_Primary">#769B55</color>
+
+    <color name="colorPrimaryDark">#648745</color>
+    <color name="colorAccent">#648745</color>
+
+    <color name="style">#648745</color>
+    <color name="orange">#FF8300</color>
+    <color name="gray1">#F4F4F4</color>
+    <color name="gray2">#666666</color>
+    <color name="gray3">#EAEAEA</color>
+    <color name="gray4">#CDCDCD</color>
+    <color name="text_gray1">#888888</color>
+    <color name="text_gray2">#333333</color>
+    <color name="text_gray3">#555555</color>
+    <color name="blue">#3598DC</color>
+    <color name="colorDark">#303F9F</color>
+    <color name="read">#E10000</color>
+    <color name="green">#34b834</color>
+
+    <color name="tra">#88ffffff</color>
+    <color name="tm">#00ffffff</color>
+
+
+    <!--项目常用色调-->
     <color name="common_color_white">#ffffffff</color>
-    <color name="common_color_black">#ff000000</color>
     <color name="common_color_line">#e1e1e1</color>
+    <color name="common_text_color">#666666</color>
+    <!--橘黄色-->
+    <color name="common_color_bg">#cccccc</color><!--view背景色-->
+    <!--導航藍顏色-->
+
+    <!--一期-->
+    <color name="tab_bar_select">#648845</color>
 </resources>
